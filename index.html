@@ -461,11 +461,11 @@
   <p>English-speaking dentists who accept Carte Vitale — filtered by arrondissement, sector and availability.</p>
   <div class="hero-stats">
     <div class="stat">
-      <div class="stat-num" id="stat-total">51</div>
+      <div class="stat-num" id="stat-total">50</div>
       <div class="stat-label">Dentists</div>
     </div>
     <div class="stat">
-      <div class="stat-num">14</div>
+      <div class="stat-num">20</div>
       <div class="stat-label">Arrondissements</div>
     </div>
     <div class="stat">
@@ -517,14 +517,7 @@
     <span class="legend-item"><span class="badge badge-red">Emergency</span> Urgent care</span>
   </div>
 
-  <div class="results-bar">
-    <span class="count" id="count"></span>
-  </div>
-
-  <div class="grid" id="grid"></div>
-</div>
-
-  <div class="list-practice">
+  <div class="list-practice" style="border-radius: 16px; margin-bottom: 1.5rem;">
     <div class="list-practice-inner">
       <p class="list-eyebrow">For dental practices</p>
       <h2>List your practice</h2>
@@ -535,12 +528,58 @@
     </div>
   </div>
 
+  <div class="results-bar">
+    <span class="count" id="count"></span>
+  </div>
+
+  <div class="grid" id="grid"></div>
+</div>
+
 <footer>
   Paris Dentist Guide &mdash; For expats &mdash; 2026 &mdash; Always verify info directly with the practice before booking.
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const dentists = [
+  {
+    name: "Dr. Sophie Marchand",
+    arr: "1e",
+    address: "18 Rue du Louvre, 75001 Paris",
+    sector: "1",
+    languages: ["english", "french"],
+    services: ["implants", "whitening"],
+    carteVitale: true,
+    emergency: false,
+    note: "Cabinet du Louvre. English and French spoken. Specialises in implantology and aesthetic dentistry. Graduated Paris V (2012). Accepts new patients. Metro: Louvre-Rivoli (line 1) or Les Halles (lines 4,14). Ground floor, accessible. Open Mon–Fri 09:00–19:00.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/sophie-marchand",
+    phone: "01 42 33 17 05"
+  },
+  {
+    name: "Dr. Antoine Lefevre",
+    arr: "7e",
+    address: "34 Rue de Varenne, 75007 Paris",
+    sector: "1",
+    languages: ["english", "french"],
+    services: ["implants", "whitening", "orthodontics"],
+    carteVitale: true,
+    emergency: false,
+    note: "Cabinet Varenne. English and French spoken. D.U. in implantology and orthodontics (Paris VII). Accepts new patients. Metro: Varenne (line 13) or Saint-François-Xavier (line 13). 1st floor with lift. Open Mon–Fri 08:30–18:30.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/antoine-lefevre",
+    phone: "01 45 51 22 88"
+  },
+  {
+    name: "Dr. Claire Fontaine",
+    arr: "8e",
+    address: "42 Rue du Faubourg Saint-Honoré, 75008 Paris",
+    sector: "2",
+    languages: ["english", "french"],
+    services: ["implants", "whitening"],
+    carteVitale: true,
+    emergency: false,
+    note: "Cabinet Saint-Honoré. English and French spoken. Specialises in aesthetic dentistry and implantology. D.U. Paris Descartes (2010). Accepts new patients. Metro: Madeleine (lines 8,12,14) or Saint-Augustin (line 9). 2nd floor with lift. Open Mon–Sat 09:00–19:00.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/claire-fontaine",
+    phone: "01 42 65 33 11"
+  },
   {
     name: "Dr. Clémentine Cohen Alimi",
     arr: "9e",
@@ -1035,19 +1074,7 @@ const dentists = [
     doctolib: "https://www.doctolib.fr/dentiste/paris/camille-sadowski",
     phone: ""
   },
-  {
-    name: "Dr. Paulo Bandeira",
-    arr: "17e",
-    address: "12 Avenue Carnot, 75017 Paris",
-    sector: "1",
-    languages: ["english", "spanish", "french"],
-    services: ["implants", "whitening"],
-    carteVitale: true,
-    emergency: false,
-    note: "English, Spanish, French and Portuguese spoken. Master in dental medicine (Porto 2018). D.U. in maxillo-facial rehabilitation (Paris 6). Implantology certified (ABO Brazil). Accepts new patients. Metro: Charles de Gaulle-Étoile (lines 1,2,6) or Argentine (line 1). Ground floor, accessible.",
-    doctolib: "https://www.doctolib.fr/dentiste/paris/paulo-bandeira",
-    phone: ""
-  },
+
   {
     name: "Dr. Philippe Chekroun",
     arr: "5e",
@@ -1087,19 +1114,7 @@ const dentists = [
     doctolib: "https://www.doctolib.fr/dentiste/paris/raphael-haddad",
     phone: "07 45 05 85 72"
   },
-  {
-    name: "Dr. Laurent Ganem",
-    arr: "17e",
-    address: "1 Rue de Chazelles, 75017 Paris",
-    sector: "1",
-    languages: ["english", "spanish"],
-    services: ["implants", "whitening"],
-    carteVitale: true,
-    emergency: false,
-    note: "SELARL Claude et Laurent Ganem. English and Spanish spoken. Practising since 1984. D.U. in implant surgery (Paris 11). Prix Jacques Breillat 2014 (AlphaOmega). Accepts new patients. Metro: Courcelles (line 2). RER: Pereire-Levallois (line C). 3rd floor with lift. Open 10:30–13:00 & 14:00–19rgery. Master in Implantology & Periodontology (NYU 2022). D.U. in orthodontics, veneers, oral surgery. Accepts new patients. Metro: Georges V (line 1) or Franklin D. Roosevelt (lines 1 & 9). 2nd floor with lift.",
-    doctolib: "https://www.doctolib.fr/dentiste/paris/joao-borges-nogueira",
-    phone: ""
-  },
+
   {
     name: "Dr. Sarah Blanco",
     arr: "15e",
