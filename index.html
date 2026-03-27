@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paris Dentist Guide</title>
+  <meta name="description" content="Find English-speaking dentists in Paris who accept Carte Vitale. Filter by arrondissement, sector and language." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f7f9fb;
+      --bg2: #eef2f7;
+      --bg3: #ffffff;
+      --text: #1a1f2e;
+      --text2: #4a5568;
+      --text3: #8a95a8;
+      --border: rgba(26,31,46,0.1);
+      --border2: rgba(26,31,46,0.2);
+      --accent: #1a4fa0;
+      --accent-light: #e8f0fb;
+      --accent-text: #1a4fa0;
+      --green-bg: #e8f5ee;
+      --green-text: #1a6e3e;
+      --orange-bg: #fff3e8;
+      --orange-text: #a05a1a;
+      --red-bg: #fde8e8;
+      --red-text: #a01a1a;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    header {
+      background: var(--bg3);
+      border-bottom: 0.5px solid var(--border);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    .logo span { font-style: italic; color: var(--accent); }
+
+    .header-tag {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text3);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 3.5rem 2rem 2.5rem;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin-bottom: 0.75rem;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero h1 em { font-style: italic; color: var(--accent); }
+
+    .hero p {
+      font-size: 14px;
+      color: var(--text2);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+
+    .stat { text-align: center; }
+
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: var(--accent);
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--text3);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .info-banner {
+      max-width: 900px;
+      margin: 0 auto 1.5rem;
+      padding: 0 1.5rem;
+    }
+
+    .info-box {
+      background: var(--accent-light);
+      border: 0.5px solid rgba(26,79,160,0.2);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      font-size: 13px;
+      color: var(--accent-text);
+      line-height: 1.6;
+    }
+
+    .info-box strong { font-weight: 500; }
+
+    .main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 1.5rem 4rem;
+    }
+
+    .controls {
+      background: var(--bg3);
+      border: 0.5px solid var(--border);
+      border-radius: 16px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .search-row { margin-bottom: 1rem; }
+
+    .search-row input {
+      width: 100%;
+      font-size: 14px;
+      padding: 11px 16px;
+      border-radius: 10px;
+      border: 0.5px solid var(--border2);
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    .search-row input:focus { border-color: var(--accent); }
+
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+      margin-bottom: 0.6rem;
+    }
+
+    .filter-row:last-child { margin-bottom: 0; }
+
+    .filter-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text3);
+      min-width: 62px;
+    }
+
+    .pill {
+      font-size: 12px;
+      padding: 5px 13px;
+      border-radius: 99px;
+      border: 0.5px solid var(--border2);
+      background: var(--bg);
+      color: var(--text2);
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: all 0.15s;
+    }
+
+    .pill:hover { background: var(--bg2); }
+
+    .pill.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .results-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .count { font-size: 12px; color: var(--text3); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--bg3);
+      border: 0.5px solid var(--border);
+      border-radius: 16px;
+      padding: 1.3rem;
+      transition: border-color 0.2s, transform 0.15s;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .card:hover {
+      border-color: var(--border2);
+      transform: translateY(-2px);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .card-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.3;
+      flex: 1;
+    }
+
+    .arr-badge {
+      font-size: 10px;
+      padding: 3px 9px;
+      border-radius: 99px;
+      background: var(--bg2);
+      color: var(--text3);
+      white-space: nowrap;
+      margin-left: 8px;
+      flex-shrink: 0;
+    }
+
+    .card-address {
+      font-size: 12px;
+      color: var(--text3);
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .badge {
+      font-size: 11px;
+      padding: 3px 9px;
+      border-radius: 6px;
+      font-weight: 500;
+    }
+
+    .badge-green { background: var(--green-bg); color: var(--green-text); }
+    .badge-orange { background: var(--orange-bg); color: var(--orange-text); }
+    .badge-red { background: var(--red-bg); color: var(--red-text); }
+    .badge-blue { background: var(--accent-light); color: var(--accent-text); }
+    .badge-gray { background: var(--bg2); color: var(--text2); }
+
+    .card-services {
+      font-size: 12px;
+      color: var(--text2);
+      line-height: 1.5;
+    }
+
+    .card-services span {
+      display: inline-block;
+      margin-right: 6px;
+      color: var(--text3);
+    }
+
+    .card-note {
+      font-size: 12px;
+      color: var(--text3);
+      font-style: italic;
+      line-height: 1.5;
+      padding-top: 8px;
+      border-top: 0.5px solid var(--border);
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 8px;
+      border-top: 0.5px solid var(--border);
+    }
+
+    .doctolib-btn {
+      font-size: 12px;
+      padding: 6px 14px;
+      border-radius: 8px;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      transition: opacity 0.15s;
+    }
+
+    .doctolib-btn:hover { opacity: 0.85; }
+
+    .phone {
+      font-size: 12px;
+      color: var(--text2);
+    }
+
+    .empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 4rem;
+      color: var(--text3);
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 1.25rem;
+      font-size: 12px;
+      color: var(--text2);
+      align-items: center;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .list-practice {
+      background: var(--accent);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .list-practice-inner {
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .list-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 0.75rem;
+    }
+
+    .list-practice h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 400;
+      color: #fff;
+      margin-bottom: 0.75rem;
+    }
+
+    .list-practice p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .list-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: #fff;
+      font-weight: 500;
+      margin-bottom: 1.25rem;
+    }
+
+    .list-price span {
+      font-size: 1rem;
+      opacity: 0.7;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+    }
+
+    .list-btn {
+      display: inline-block;
+      background: #fff;
+      color: var(--accent);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 12px 28px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: opacity 0.15s;
+      margin-bottom: 1rem;
+    }
+
+    .list-btn:hover { opacity: 0.9; }
+
+    .list-note {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 0 !important;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 12px;
+      color: var(--text3);
+      border-top: 0.5px solid var(--border);
+    }
+
+    @media (max-width: 600px) {
+      header { padding: 1rem; }
+      .hero { padding: 2rem 1rem 1.5rem; }
+      .main { padding: 0 1rem 3rem; }
+      .info-banner { padding: 0 1rem; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Paris <span>Dentist</span> Guide</div>
+  <span class="header-tag">For expats in Paris</span>
+</header>
+
+<div class="hero">
+  <p class="hero-eyebrow">The expat's dental companion</p>
+  <h1>Find a <em>dentist</em> in Paris</h1>
+  <p>English-speaking dentists who accept Carte Vitale — filtered by arrondissement, sector and availability.</p>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num" id="stat-total">51</div>
+      <div class="stat-label">Dentists</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">14</div>
+      <div class="stat-label">Arrondissements</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">20</div>
+      <div class="stat-label">English-speaking</div>
+    </div>
+  </div>
+</div>
+
+<div class="info-banner">
+  <div class="info-box">
+    <strong>How it works in France:</strong> Secteur 1 = cheapest, fees set by state, 60% reimbursed by Carte Vitale. Secteur 2 = higher fees but still partially reimbursed. Always book via Doctolib or call ahead — waiting lists can be several months for non-emergencies.
+  </div>
+</div>
+
+<div class="main">
+  <div class="controls">
+    <div class="search-row">
+      <input type="text" id="search" placeholder="Search by name, area, language, service..." oninput="render()" />
+    </div>
+    <div class="filter-row">
+      <span class="filter-label">Sector</span>
+      <button class="pill active" data-f="sector" data-v="all" onclick="setF('sector','all',this)">All</button>
+      <button class="pill" data-f="sector" data-v="1" onclick="setF('sector','1',this)">Secteur 1</button>
+      <button class="pill" data-f="sector" data-v="2" onclick="setF('sector','2',this)">Secteur 2</button>
+    </div>
+    <div class="filter-row">
+      <span class="filter-label">Language</span>
+      <button class="pill active" data-f="lang" data-v="all" onclick="setF('lang','all',this)">All</button>
+      <button class="pill" data-f="lang" data-v="english" onclick="setF('lang','english',this)">English</button>
+      <button class="pill" data-f="lang" data-v="spanish" onclick="setF('lang','spanish',this)">Spanish</button>
+      <button class="pill" data-f="lang" data-v="swedish" onclick="setF('lang','swedish',this)">Swedish</button>
+    </div>
+    <div class="filter-row">
+      <span class="filter-label">Service</span>
+      <button class="pill active" data-f="service" data-v="all" onclick="setF('service','all',this)">All</button>
+      <button class="pill" data-f="service" data-v="implants" onclick="setF('service','implants',this)">Implants</button>
+      <button class="pill" data-f="service" data-v="orthodontics" onclick="setF('service','orthodontics',this)">Orthodontics</button>
+      <button class="pill" data-f="service" data-v="emergency" onclick="setF('service','emergency',this)">Emergency</button>
+      <button class="pill" data-f="service" data-v="whitening" onclick="setF('service','whitening',this)">Whitening</button>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span style="color: var(--text3); font-size:11px; text-transform:uppercase; letter-spacing:0.1em;">Legend:</span>
+    <span class="legend-item"><span class="badge badge-green">Secteur 1</span> Cheapest</span>
+    <span class="legend-item"><span class="badge badge-orange">Secteur 2</span> Higher fees</span>
+    <span class="legend-item"><span class="badge badge-blue">English</span> Speaks English</span>
+    <span class="legend-item"><span class="badge badge-red">Emergency</span> Urgent care</span>
+  </div>
+
+  <div class="results-bar">
+    <span class="count" id="count"></span>
+  </div>
+
+  <div class="grid" id="grid"></div>
+</div>
+
+  <div class="list-practice">
+    <div class="list-practice-inner">
+      <p class="list-eyebrow">For dental practices</p>
+      <h2>List your practice</h2>
+      <p>Are you an English-speaking dentist in Paris? Get listed in our guide and reach expats looking for a dentist. Simple, affordable, no commitment.</p>
+      <div class="list-price">49€ <span>/ year</span></div>
+      <a href="mailto:parisdentist51@gmail.com?subject=List%20my%20practice%20%E2%80%94%20Paris%20Dentist%20Guide&body=Hi%2C%0A%0AI%20would%20like%20to%20list%20my%20dental%20practice%20in%20the%20Paris%20Dentist%20Guide.%0A%0AName%3A%20%0APractice%20name%3A%20%0AAddress%3A%20%0APhone%3A%20%0ADoctolib%20link%3A%20%0ALanguages%20spoken%3A%20%0A%0ABest%20regards" class="list-btn">Apply to be listed →</a>
+      <p class="list-note">We'll add your profile within 48 hours. Cancel anytime.</p>
+    </div>
+  </div>
+
+<footer>
+  Paris Dentist Guide &mdash; For expats &mdash; 2026 &mdash; Always verify info directly with the practice before booking.
+</footer>
+
+<script>
+const dentists = [
+  {
+    name: "Dr. Clémentine Cohen Alimi",
+    arr: "9e",
+    address: "94 Rue Saint-Lazare, 75009 Paris",
+    sector: "1",
+    languages: ["english", "french"],
+    services: ["implants", "whitening", "orthodontics", "emergency"],
+    carteVitale: true,
+    emergency: false,
+    note: "Modern implant & dental practice. English spoken. Specialises in implantology, prosthodontics, laser dentistry and aesthetic care. Metro: Gare Saint-Lazare (lines 3,12,13,14). 2nd floor with lift. Consultation: 23€.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/clementine-cohen?pid=practice-369162",
+    phone: "01 39 35 22 65"
+  },
+  {
+    name: "Dr. Amélie Pereira",
+    arr: "12e",
+    address: "5 Rue de Lyon, 75012 Paris",
+    sector: "1",
+    languages: ["english", "spanish", "french"],
+    services: ["implants", "whitening", "emergency"],
+    carteVitale: true,
+    emergency: false,
+    note: "Dental centre at Gare de Lyon. Speaks English, Spanish and French. Secteur 1. Consultation 23€, scaling 28.92€, implants 800€. Metro: Gare de Lyon (lines 1 & 14). Open Mon–Fri 09:00–19:00.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/amelie-pereira",
+    phone: "01 83 64 06 46"
+  },
+  {
+    name: "Dr. Edouard Le Roux",
+    arr: "18e",
+    address: "77bis Rue Marcadet, 75018 Paris",
+    sector: "1",
+    languages: ["english", "french"],
+    services: ["implants", "emergency"],
+    carteVitale: true,
+    emergency: false,
+    note: "Montmartre dental clinic. English spoken. Specialises in implantology, periodontology and oral surgery. Metro: Marcadet-Poissonniers (lines 4 & 12). Ground floor, accessible entrance. Open Tuesdays 09:00–19:00.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/edouard-le-roux",
+    phone: "01 46 06 64 64"
+  },
+  {
+    name: "Dr. Yohan Aboaf",
+    arr: "9e",
+    address: "8 Boulevard de la Madeleine, 75009 Paris",
+    sector: "1",
+    languages: ["english", "french"],
+    services: ["implants", "whitening", "orthodontics"],
+    carteVitale: true,
+    emergency: false,
+    note: "Smile Clinic in the heart of Paris. English spoken. Specialises in implants, veneers, crowns, whitening and endodontics. Metro: Madeleine (lines 8,12,14) or Opéra (lines 3,7,8). Open Mon 09:00–19:00. Consultation: 23€.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/yohan-aboaf-paris",
+    phone: "01 40 70 95 64"
+  },
+  {
+    name: "Dr. Marie Thiam N'Diaye",
+    arr: "4e",
+    address: "41 Rue des Archives, 75004 Paris",
+    sector: "1",
+    languages: ["english", "french"],
+    services: ["implants", "whitening"],
+    carteVitale: true,
+    emergency: false,
+    note: "Steuer Dental Clinic in Le Marais. English and French spoken. Specialises in whitening, crowns, periodontology and implant-supported prosthetics. Metro: Rambuteau (line 11) or RER Châtelet-Les Halles. Open Mon 08:30–17:00.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/marie-thiam-n-diaye",
+    phone: "01 48 87 72 00"
+  },
+  {
+    name: "OptimoDon Dental Centre",
+    arr: "13e",
+    address: "6 Rue Boutin, 75013 Paris",
+    sector: "1",
+    languages: ["english", "spanish", "french"],
+    services: ["implants", "whitening", "orthodontics", "emergency"],
+    carteVitale: true,
+    emergency: false,
+    note: "Multi-lingual dental centre with a full team. Speaks English, Arabic, Spanish, Italian, Russian and Vietnamese. Implants, orthodontics, endodontics, cosmetic dentistry and prosthetics. Metro: Glacière (line 6). Open Mon 09:30–19:00.",
+    doctolib: "https://www.doctolib.fr/centre-dentaire/paris/centre-dentaire-optimodon",
+    phone: "01 42 26 09 42"
+  },
+  {
+    name: "Dr. Alexandre Ferté",
+    arr: "4e",
+    address: "13 Rue Jean Beausire, 75004 Paris",
+    sector: "1",
+    languages: ["english", "french"],
+    services: ["emergency"],
+    carteVitale: true,
+    emergency: false,
+    note: "Sana Oris Marais clinic. English spoken. Specialist in endodontics (root canal treatment) using surgical microscope. Metro: Bastille (lines 1, 5 & 8). Ground floor, accessible entrance.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/alexandre-ferte-paris",
+    phone: ""
+  },
+  {
+    name: "Dr. Michael Smadja",
+    arr: "18e",
+    address: "44 Boulevard Barbès, 75018 Paris",
+    sector: "1",
+    languages: ["french"],
+    services: ["implants", "whitening", "emergency"],
+    carteVitale: true,
+    emergency: true,
+    note: "Castle Center — multidisciplinary clinic (dental, ENT, ophthalmology, aesthetics). Implantology, maxillofacial surgery, crowns, whitening and emergency care. Metro: Château Rouge (line 4) or RER Gare du Nord. Open 09:00–19:00.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/michael-smadja",
+    phone: "01 42 57 06 27"
+  },
+  {
+    name: "Dr. Léa Garzon",
+    arr: "13e",
+    address: "61 Avenue d'Italie, 75013 Paris",
+    sector: "1",
+    languages: ["english", "spanish", "french"],
+    services: ["whitening"],
+    carteVitale: true,
+    emergency: false,
+    note: "Dr. Alexis Saffar's practice. English, Spanish and French spoken. Also works at Henri-Mondor Hospital AP-HP. Metro: Tolbiac (line 7). 2nd floor with lift. Open Mon 09:00–19:00.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/lea-garzon",
+    phone: "01 44 24 25 26"
+  },
+  {
+    name: "Dr. Eléonore Goupil",
+    arr: "14e",
+    address: "67 Boulevard Brune, 75014 Paris",
+    sector: "1",
+    languages: ["english", "spanish", "french"],
+    services: ["implants", "whitening", "orthodontics"],
+    carteVitale: true,
+    emergency: false,
+    note: "AUDAN Dental Center Brune. English, Spanish and French spoken. Implantology, orthodontics, crowns, wisdom tooth surgery, whitening. Ground floor, accessible. Open 10:00–18:00.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/eleonore-goupil",
+    phone: "01 45 45 42 42"
+  },
+  {
+    name: "Dr. Claire Bigot",
+    arr: "17e",
+    address: "11 Rue Gounod, 75017 Paris",
+    sector: "1",
+    languages: ["english", "french"],
+    services: ["implants", "emergency"],
+    carteVitale: true,
+    emergency: false,
+    note: "Specialist in periodontology (gum disease). English spoken. Paris Cité University graduate. Also works at Bretonneau Hospital AP-HP. Focuses on prevention and personalised gum care. Metro: Pereire (line 3).",
+    doctolib: "https://www.doctolib.fr/dentiste/clichy/claire-bigot-clichy",
+    phone: ""
+  },
+  {
+    name: "Dr. Sarab Alasadi",
+    arr: "18e",
+    address: "47-49 Rue Marx Dormoy, 75018 Paris",
+    sector: "1",
+    languages: ["english", "spanish", "french"],
+    services: ["implants", "whitening", "orthodontics"],
+    carteVitale: true,
+    emergency: false,
+    note: "English, Arabic and French spoken. Specialises in Invisalign, oral surgery, sleep apnoea (TMD), orthodontics and whitening. Free parking. 1st floor with lift. Metro: Marx-Dormoy (line 12). Open Tues 09:00–17:00.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/sarab-al-asadi",
+    phone: "01 40 36 99 67"
+  },
+  {
+    name: "Dr. Alix Farenc",
+    arr: "15e",
+    address: "35 Rue Olivier de Serres, 75015 Paris",
+    sector: "1",
+    languages: ["english", "french"],
+    services: ["orthodontics", "whitening"],
+    carteVitale: true,
+    emergency: false,
+    note: "Clinic '35 Sourires'. English spoken. Invisalign, children's dentistry, prosthetics. Metro: Convention (line 12). 2nd floor with lift. Note: on parental leave until 07/04/2026 — Dr. Soto covering in the meantime.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/alix-farenc-paris",
+    phone: "01 42 50 67 21"
+  },
+  {
+    name: "Dr. Benjamin Darmon",
+    arr: "12e",
+    address: "245 Avenue Daumesnil, 75012 Paris",
+    sector: "1",
+    languages: ["english", "spanish"],
+    services: ["implants", "emergency"],
+    carteVitale: true,
+    emergency: false,
+    note: "Oral surgeon and implantologist. English and Spanish spoken. Specialises in implants, bone grafts, periodontology. Previously at Saint-Antoine Hospital AP-HP (2008–2023). 2nd floor with lift.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/benjamin-darmon",
+    phone: ""
+  },
+  {
+    name: "Dr. Dan Splet",
+    arr: "20e",
+    address: "60 Rue Pelleport, 75020 Paris",
+    sector: "1",
+    languages: ["english", "french"],
+    services: ["orthodontics", "whitening"],
+    carteVitale: true,
+    emergency: false,
+    note: "Centre dentaire Paris 20 Petit Pelleport – Dentego. English, French and Romanian spoken. Exclusively orthodontics — children, teens and adults. Invisalign, braces, dental orthopaedics. C.E.S. in paediatric dentistry (Paris-Cité). Previously at Centre Hospitalier Sainte-Anne. Metro: Pelleport (line 3B).",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/dan-splet",
+    phone: ""
+  },
+  {
+    name: "Dr. Marie Badel",
+    arr: "10e",
+    address: "58 Boulevard de Magenta, 75010 Paris",
+    sector: "1",
+    languages: ["english", "french"],
+    services: ["implants", "whitening", "emergency"],
+    carteVitale: true,
+    emergency: false,
+    note: "Practice near Gare de l'Est. English spoken. Whitening, children's dentistry, implants, devitalisation, extractions. Metro: Gare de l'Est (lines 4, 5 & 7). 2nd floor with lift. Open Mon 09:30–18:30.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/marie-badel",
+    phone: "01 46 07 43 61"
+  },
+  {
+    name: "Dr. Maxime Caffard",
+    arr: "2e",
+    address: "13 Boulevard Montmartre, 75002 Paris",
+    sector: "1",
+    languages: ["english", "french"],
+    services: ["whitening", "implants"],
+    carteVitale: true,
+    emergency: false,
+    note: "Dentego clinic near Grands Boulevards. German, English and French spoken. Whitening, crowns, veneers, devitalisation, scaling. Ground floor, accessible. Metro: Richelieu-Drouot (lines 8 & 9).",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/maxime-caffard",
+    phone: ""
+  },
+  {
+    name: "Dr. Françoise Monier",
+    arr: "3e",
+    address: "111 Boulevard Beaumarchais, 75003 Paris",
+    sector: "1",
+    languages: ["english", "french"],
+    services: ["whitening"],
+    carteVitale: true,
+    emergency: false,
+    note: "English and French spoken. Focus on prevention and prophylaxis. Experienced practitioner since 1985. Consultation 23€. Metro: Saint-Sébastien Froissart (line 8).",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/francoise-monier",
+    phone: ""
+  },
+  {
+    name: "Dr. Lahouari Belaili",
+    arr: "5e",
+    address: "112 Rue Mouffetard, 75005 Paris",
+    sector: "1",
+    languages: ["spanish", "french"],
+    services: ["implants", "whitening", "emergency"],
+    carteVitale: true,
+    emergency: false,
+    note: "Implantologist on the famous Rue Mouffetard. Speaks Arabic, German, Spanish and French. Implants, oral surgery, wisdom teeth, gum surgery. Accepts new patients. Metro: Censier-Daubenton (line 7). 1st floor, no lift.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/lahouari-belaili",
+    phone: ""
+  },
+  {
+    name: "Dr. Léa Aumont",
+    arr: "6e",
+    address: "44 Rue Saint-Placide, 75006 Paris",
+    sector: "2",
+    languages: ["english", "french"],
+    services: ["whitening", "emergency"],
+    carteVitale: true,
+    emergency: false,
+    note: "Cabinet Drs Dray et Moulin. English spoken. Conservative dentistry in a calm atmosphere. Whitening, crowns, endodontics, scaling. Metro: Saint-Placide (line 4) or Rennes (line 12). 1st floor with lift.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/lea-aumont",
+    phone: "01 45 49 08 98"
+  },
+  {
+    name: "Dr. Elodie Partouche",
+    arr: "11e",
+    address: "23 Avenue de la République, 75011 Paris",
+    sector: "1",
+    languages: ["english", "french"],
+    services: ["implants", "whitening"],
+    carteVitale: true,
+    emergency: false,
+    note: "General dentistry practice. English spoken. Accepts new patients. Implantology training 2026. Tiers payant Sécurité sociale. Metro: Parmentier (line 3). 2nd floor, no lift. Open 09:00–20:00.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/elodie-partouche",
+    phone: "01 43 57 25 74"
+  },
+  {
+    name: "Dr. Stéphanie Wierzba",
+    arr: "16e",
+    address: "7 Rue le Sueur, 75116 Paris",
+    sector: "1",
+    languages: ["english", "french"],
+    services: ["implants", "whitening"],
+    carteVitale: true,
+    emergency: false,
+    note: "English spoken. Implantology certified. Practising since 1998. Located between Place Victor Hugo and Porte Maillot. Accepts new patients. Metro: Argentine (line 1). Ground floor, accessible. Open Mon–Fri 09:00–19:00.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/stephanie-wierzba",
+    phone: "01 45 00 62 50"
+  },
+  {
+    name: "Dr. Samuel Boukhris",
+    arr: "19e",
+    address: "65 Rue d'Hautpoul, 75019 Paris",
+    sector: "1",
+    languages: ["english", "spanish", "french"],
+    services: ["implants", "orthodontics"],
+    carteVitale: true,
+    emergency: false,
+    note: "English, Arabic, French and Hebrew spoken. Implantology (D.U. 2024) and Invisalign certified. Accepts new patients. Metro: Ourcq (line 5). Ground floor, accessible. Open 09:30–19:00.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/samuel-boukhris",
+    phone: "01 40 37 87 51"
+  },
+  {
+    name: "Dr. Liora Barukh",
+    arr: "19e",
+    address: "65 Rue d'Hautpoul, 75019 Paris",
+    sector: "1",
+    languages: ["english", "french"],
+    services: ["implants", "whitening"],
+    carteVitale: true,
+    emergency: false,
+    note: "Cabinet Dr Azria David. English and French spoken. Accepts new patients. Tiers payant Sécurité sociale. Metro: Ourcq (line 5). Ground floor, accessible. Open 09:30–19:00.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/liora-barukh",
+    phone: "01 40 37 87 51"
+  },
+  {
+    name: "Dr. Stéphane Perez",
+    arr: "16e",
+    address: "42 Rue Poussin, 75016 Paris",
+    sector: "1",
+    languages: ["english", "french"],
+    services: ["implants", "whitening"],
+    carteVitale: true,
+    emergency: false,
+    note: "Auteuil Santé Dentaire clinic. English spoken. Accepts new patients. 1st floor with lift. RER: Javel (line C). Open Mon 09:30–19:00.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/stephane-perez",
+    phone: "01 46 51 02 45"
+  },
+  {
+    name: "Dr. Anis Brougui",
+    arr: "17e",
+    address: "18 Boulevard Bessières, 75017 Paris",
+    sector: "1",
+    languages: ["english", "french"],
+    services: ["implants", "whitening", "emergency"],
+    carteVitale: true,
+    emergency: true,
+    note: "Clinique Dentaire Paris-Bichat — Porte de Saint-Ouen. English and French spoken. Graduated Nancy (2020). Endodontics, crowns, bridges, periodontology, extractions, bruxism. Free parking. Metro: Porte de Saint-Ouen (line 13). Ground floor, accessible. Open 09:00–19:00.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/anis-brougui",
+    phone: "01 46 27 36 17"
+  },
+  {
+    name: "Centre New Smile Courcelles",
+    arr: "17e",
+    address: "82 Boulevard de Courcelles, 75017 Paris",
+    sector: "1",
+    languages: ["english", "french"],
+    services: ["implants", "whitening", "orthodontics"],
+    carteVitale: true,
+    emergency: false,
+    note: "Multi-specialty dental centre. English and French spoken. Latest technology, multiple dental specialities under one roof. Tiers payant Sécurité sociale. Accepts new patients. Metro: Courcelles (line 2).",
+    doctolib: "https://www.doctolib.fr/centre-dentaire/paris/centre-new-smile-courcelles",
+    phone: ""
+  },
+  {
+    name: "Dr. Victorien Vuong",
+    arr: "17e",
+    address: "1 Rue de Chazelles, 75017 Paris",
+    sector: "1",
+    languages: ["english", "french"],
+    services: ["implants", "whitening"],
+    carteVitale: true,
+    emergency: false,
+    note: "English and French spoken. D.U. in implantology (Évry 2016). C.E.S. in fixed prosthetics (Paris 5). Chef de clinique at Hôpital Bretonneau AP-HP. Published article on simplified dental restoration (2021). Metro: Courcelles (line 2). 3rd floor with lift.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/victorien-vuong",
+    phone: ""
+  },
+  {
+    name: "Dr. Cécilia Lai",
+    arr: "6e",
+    address: "5 Rue Suger, 75006 Paris",
+    sector: "1",
+    languages: ["english", "french"],
+    services: ["implants", "whitening"],
+    carteVitale: true,
+    emergency: false,
+    note: "English and French spoken. Former intern at CHU Strasbourg (prosthetic dentistry). D.E.S. in oral medicine & D.U. in aesthetic dentistry (Strasbourg 2018). Specialises in prosthetic rehabilitation, crowns and smile aesthetics. Accepts new patients. Metro: Odéon (lines 4 & 10) or Saint-Michel (line 4).",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/cecilia-lai",
+    phone: ""
+  },
+  {
+    name: "Dr. Jérémy Bouganim",
+    arr: "6e",
+    address: "15 Rue Madame, 75006 Paris",
+    sector: "1",
+    languages: ["english", "spanish", "french"],
+    services: ["implants", "whitening", "orthodontics"],
+    carteVitale: true,
+    emergency: false,
+    note: "Cabinet Saint-Sulpice. English, Spanish and French spoken. Specialist in aesthetic dentistry, implantology and periodontology. Bone grafts, gum surgery, pre-implant surgery. Accepts new patients. Metro: Saint-Sulpice (line 4). RER: Luxembourg (line B). Ground floor.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/jeremy-bouganim",
+    phone: ""
+  },
+  {
+    name: "Dr. Guillermo Ortega",
+    arr: "18e",
+    address: "53 Rue Custine, 75018 Paris",
+    sector: "1",
+    languages: ["english", "spanish", "french"],
+    services: ["implants", "whitening"],
+    carteVitale: true,
+    emergency: false,
+    note: "Cabinet Custine Dentaire. English, Spanish and French spoken. D.U. in implant-supported prosthetics (Paris 7). Member European Association for Osseointegration. Crowns, veneers, scaling. Consultation: 23€. Metro: Lamarck-Caulaincourt (line 12). 2nd floor with lift. Open 08:30–18:30.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/guillermo-ortega",
+    phone: "01 46 06 15 85"
+  },
+  {
+    name: "Dr. Arnauld Gollety",
+    arr: "16e",
+    address: "51 Avenue Hubert Germain, 75116 Paris",
+    sector: "1",
+    languages: ["english", "french"],
+    services: ["implants", "whitening", "emergency"],
+    carteVitale: true,
+    emergency: false,
+    note: "English and French spoken. Practising since 1995 (Paris Descartes). Previously at Hôpital Bretonneau AP-HP. Member Société Française d'Endodontie. Note: street name has changed but same address. Metro: Porte Dauphine (line 2). Ground floor, accessible. Accepts new patients.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/arnauld-gollety",
+    phone: ""
+  },
+  {
+    name: "Dr. Jonathan Guetta",
+    arr: "15e",
+    address: "24 Avenue Félix Faure, 75015 Paris",
+    sector: "1",
+    languages: ["french"],
+    services: ["implants", "emergency"],
+    carteVitale: true,
+    emergency: false,
+    note: "Cabinet dentaire et d'implantologie. Former intern at Paris hospitals in oral medicine (Paris 7 Diderot, 2018). D.E.S. in oral medicine. Attachment at Hôpital Bretonneau AP-HP (implantology). Accepts new patients. Metro: Félix Faure (line 8). RER: Javel (line C). Ground floor, accessible.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/jonathan-guetta",
+    phone: ""
+  },
+  {
+    name: "Dr. Roland Mercier",
+    arr: "15e",
+    address: "26 Rue Miollis, 75015 Paris",
+    sector: "1",
+    languages: ["english", "french"],
+    services: ["implants", "whitening", "emergency"],
+    carteVitale: true,
+    emergency: false,
+    note: "English and French spoken. Trained at NYU College of Dentistry (implantology & periodontology, 1989). D.U. in implantology & periodontology (Paris 7). Previously practised in New York and San Francisco. Wisdom teeth, oral surgery, maxillo-facial surgery. Metro: Cambronne (line 6) or Ségur (line 10). 2nd floor with lift.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/roland-mercier",
+    phone: ""
+  },
+  {
+    name: "Dr. Claire Coffin",
+    arr: "14e",
+    address: "35 Rue du Départ, 75014 Paris",
+    sector: "1",
+    languages: ["english", "french"],
+    services: ["whitening", "implants"],
+    carteVitale: true,
+    emergency: false,
+    note: "Cabinet du Dr Benoît Eouzan. English spoken. Graduated Paris Descartes (2015). General dentistry, accepts new patients. Metro: Montparnasse-Bienvenüe (lines 4,6,12,13). RER: Port-Royal (line B). 4th floor with lift. Open 09:30–15:00 & 14:00–18:15. Consultation: 23€.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/claire-coffin",
+    phone: "01 43 22 55 02"
+  },
+  {
+    name: "Dr. Juliette Lorente",
+    arr: "12e",
+    address: "10 Rue de Prague, 75012 Paris",
+    sector: "1",
+    languages: ["english", "spanish", "french"],
+    services: ["whitening", "orthodontics"],
+    carteVitale: true,
+    emergency: false,
+    note: "Cabinet 10 Prague. English, Spanish and French spoken. Specialises in whitening, crowns, paediatric dentistry and bruxism. Accepts new patients. Metro: Ledru-Rollin (line 8) or Bastille (lines 1,5,8). Ground floor. Open 09:00–15:00 & 14:00–19:00.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/juliette-lorente",
+    phone: "01 89 16 43 33"
+  },
+  {
+    name: "Dr. Nadine Madbouli",
+    arr: "5e",
+    address: "45 Avenue Georges Bernanos, 75005 Paris",
+    sector: "1",
+    languages: ["english", "french"],
+    services: ["emergency", "whitening"],
+    carteVitale: true,
+    emergency: true,
+    note: "Espace dentaire Port-Royal. English spoken. Dental emergencies, scaling, gum care, crowns. Graduated Paris Diderot (Paris 7). Previously at Hôpital Rothschild & Saint-Antoine AP-HP. Metro: Raspail (lines 4 & 6) or Vavin (line 4). RER: Port-Royal (line B). 1st floor, no lift. Open 09:00–13:00 & 13:00–19:00.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/nadine-madbouli",
+    phone: "01 43 54 06 29"
+  },
+  {
+    name: "Dr. Camille Sadowski",
+    arr: "11e",
+    address: "61 Rue du Chemin Vert, 75011 Paris",
+    sector: "1",
+    languages: ["english", "french"],
+    services: ["implants", "whitening"],
+    carteVitale: true,
+    emergency: false,
+    note: "Cabinet Chemin Vert. English and French spoken. Specialist in periodontology (D.E.S.U. Aix-Marseille 2021). Previously at Hôpital de La Timone AP-HM. Accepts new patients. Metro: Saint-Ambroise (line 9). Ground floor, accessible.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/camille-sadowski",
+    phone: ""
+  },
+  {
+    name: "Dr. Paulo Bandeira",
+    arr: "17e",
+    address: "12 Avenue Carnot, 75017 Paris",
+    sector: "1",
+    languages: ["english", "spanish", "french"],
+    services: ["implants", "whitening"],
+    carteVitale: true,
+    emergency: false,
+    note: "English, Spanish, French and Portuguese spoken. Master in dental medicine (Porto 2018). D.U. in maxillo-facial rehabilitation (Paris 6). Implantology certified (ABO Brazil). Accepts new patients. Metro: Charles de Gaulle-Étoile (lines 1,2,6) or Argentine (line 1). Ground floor, accessible.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/paulo-bandeira",
+    phone: ""
+  },
+  {
+    name: "Dr. Philippe Chekroun",
+    arr: "5e",
+    address: "23 Rue Pascal, 75005 Paris",
+    sector: "1",
+    languages: ["english", "french"],
+    services: ["implants", "whitening"],
+    carteVitale: true,
+    emergency: false,
+    note: "English spoken. Practising since 1992. Implantology certified (Hôpital Saint-Antoine). D.U. in dental medicine expertise (Paris 7). Member AFI & AlphaOmega. Note: cash and cheques only — no card payments. Metro: Les Gobelins (line 7). RER: Port-Royal or Luxembourg (line B). 3rd floor with lift.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/philippe-chekroun",
+    phone: ""
+  },
+  {
+    name: "Dr. Michael Levy",
+    arr: "20e",
+    address: "98 Rue Haxo, 75020 Paris",
+    sector: "1",
+    languages: ["english", "french"],
+    services: ["implants", "whitening"],
+    carteVitale: true,
+    emergency: false,
+    note: "Cabinet Dentaire Paris Haxo. English and French spoken. D.U. in implantology (Hôpital Saint-Joseph 2014). Previously at Hôpital Bretonneau AP-HP. Accepts new patients. Metro: Porte des Lilas (line 11). Open for consultations only via Doctolib.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/michael-levy",
+    phone: ""
+  },
+  {
+    name: "Dr. Raphael Haddad",
+    arr: "12e",
+    address: "80 Avenue Ledru Rollin, 75012 Paris",
+    sector: "1",
+    languages: ["english", "spanish", "french"],
+    services: ["implants", "whitening", "orthodontics"],
+    carteVitale: true,
+    emergency: false,
+    note: "Cabinet Chirurgie Dentaire Esthétique, Parodontie et Orthodontie – Drs Haddad, Biret, Naouri & Kamioner. English, Spanish and French spoken. Invisalign, All-on-4/6, veneers, bone grafts, sinus lifts, periodontology. Metro: Ledru-Rollin (line 8) or Bastille (lines 1,5,8). 1st floor with lift. Open 09:00–19:00. Tel: 07 45 05 85 72.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/raphael-haddad",
+    phone: "07 45 05 85 72"
+  },
+  {
+    name: "Dr. Laurent Ganem",
+    arr: "17e",
+    address: "1 Rue de Chazelles, 75017 Paris",
+    sector: "1",
+    languages: ["english", "spanish"],
+    services: ["implants", "whitening"],
+    carteVitale: true,
+    emergency: false,
+    note: "SELARL Claude et Laurent Ganem. English and Spanish spoken. Practising since 1984. D.U. in implant surgery (Paris 11). Prix Jacques Breillat 2014 (AlphaOmega). Accepts new patients. Metro: Courcelles (line 2). RER: Pereire-Levallois (line C). 3rd floor with lift. Open 10:30–13:00 & 14:00–19rgery. Master in Implantology & Periodontology (NYU 2022). D.U. in orthodontics, veneers, oral surgery. Accepts new patients. Metro: Georges V (line 1) or Franklin D. Roosevelt (lines 1 & 9). 2nd floor with lift.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/joao-borges-nogueira",
+    phone: ""
+  },
+  {
+    name: "Dr. Sarah Blanco",
+    arr: "15e",
+    address: "24 Avenue du Maine, 75015 Paris",
+    sector: "1",
+    languages: ["english", "french"],
+    services: ["whitening", "implants"],
+    carteVitale: true,
+    emergency: false,
+    note: "English and French spoken. D.U. in aesthetic dentistry & periodontology (Nice/Paris VI). Specialises in whitening, adhesive dentistry, gum care and bruxism. Accepts new patients. Metro: Montparnasse-Bienvenüe (lines 4,6,12,13) or Falguière (line 12). 2nd floor with lift. Open 09:00–15:00 & 14:00–19:00.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/sarah-blanco",
+    phone: ""
+  },
+  {
+    name: "Dr. Jessica Quitard",
+    arr: "9e",
+    address: "12 Rue Victor Massé, 75009 Paris",
+    sector: "1",
+    languages: ["english", "french"],
+    services: ["implants", "whitening"],
+    carteVitale: true,
+    emergency: false,
+    note: "English and French spoken. Implants, prophylaxis, whitening, implant-supported prosthetics. Hospital attachment at Pitié-Salpêtrière (since 2009). Accepts new patients. Metro: Pigalle (lines 2 & 12) or Saint-Georges (line 12). Open 09:30–14:00 & 13:00–19:00.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/jessica-quitard",
+    phone: "01 48 78 86 53"
+  },
+  {
+    name: "Dr. Mohamed Krimi",
+    arr: "3e",
+    address: "11 Boulevard du Temple, 75003 Paris",
+    sector: "1",
+    languages: ["english", "french"],
+    services: ["implants", "whitening", "emergency"],
+    carteVitale: true,
+    emergency: false,
+    note: "English, Arabic, French, Italian and Dutch spoken. Specialist in endodontics (postgrad ACTA Amsterdam 2021). Cone beam, devitalisation, endodontics. Previously at Hôpital Louis-Mourier AP-HP. Accepts new patients. Metro: Filles du Calvaire (line 8) or Oberkampf (lines 5 & 9). Ground floor, accessible.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/mohamed-krimi",
+    phone: ""
+  },
+  {
+    name: "Dr. Capucine Duflocq",
+    arr: "14e",
+    address: "48 Rue du Montparnasse, 75014 Paris",
+    sector: "1",
+    languages: ["english", "french"],
+    services: ["whitening", "implants"],
+    carteVitale: true,
+    emergency: false,
+    note: "Cabinet Dentaire NDC. English and French spoken. Graduated Paris Descartes (2016). Specialises in whitening, crowns, digital dentistry and bruxism. Accepts new patients. Metro: Edgar Quinet (line 6) or Montparnasse-Bienvenüe (lines 4,6,12,13). Open 09:00–18:00.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/capucine-duflocq",
+    phone: "01 87 44 96 44"
+  },
+  {
+    name: "Dr. Samuel Leça",
+    arr: "4e",
+    address: "23 Rue du Renard, 75004 Paris",
+    sector: "1",
+    languages: ["english", "spanish", "french"],
+    services: ["implants", "whitening", "orthodontics"],
+    carteVitale: true,
+    emergency: false,
+    note: "Centre dentaire Paris 4 – Hôtel de Ville – Dentego. English, Spanish, French and Portuguese spoken. Invisalign certified (2018). Implants 800€, consultation 23€, scaling 28.92€. Metro: Rambuteau (line 11) or Hôtel de Ville (lines 1 & 11). RER: Châtelet-Les Halles. Ground floor, accessible. Open 08:30–19:30.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/samuel-leca",
+    phone: "01 83 64 06 61"
+  },
+  {
+    name: "Dr. David Bakhouche",
+    arr: "13e",
+    address: "14 Rue Berbier du Mets, 75013 Paris",
+    sector: "1",
+    languages: ["english", "spanish", "french"],
+    services: ["implants", "whitening"],
+    carteVitale: true,
+    emergency: false,
+    note: "Cabinet Reine Blanche. English, Spanish and French spoken. Adults only. D.U. in aesthetic dentistry, implantology and periodontology (Montpellier, Dijon & Paris-Saclay). Accepts new patients. Metro: Les Gobelins (line 7) or Place d'Italie (lines 5,6,7). Ground floor. Open 09:00–14:00 & 13:00–19:00. Consultation: 23€.",
+    doctolib: "https://www.doctolib.fr/dentiste/paris/david-bakhouche",
+    phone: "01 45 35 05 05"
+  }
+];
+
+let filters = { sector: 'all', lang: 'all', service: 'all' };
+
+function setF(type, val, el) {
+  filters[type] = val;
+  document.querySelectorAll(`[data-f="${type}"]`).forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  render();
+}
+
+function arrToNum(arr) {
+  return parseInt(arr.replace(/[^0-9]/g, '')) || 99;
+}
+
+function render() {
+  const q = document.getElementById('search').value.toLowerCase();
+  const filtered = dentists.filter(d => {
+    const mS = filters.sector === 'all' || d.sector === filters.sector;
+    const mL = filters.lang === 'all' || d.languages.includes(filters.lang);
+    const mSv = filters.service === 'all' || d.services.includes(filters.service);
+    const mQ = !q ||
+      d.name.toLowerCase().includes(q) ||
+      d.arr.toLowerCase().includes(q) ||
+      d.address.toLowerCase().includes(q) ||
+      d.note.toLowerCase().includes(q) ||
+      d.languages.some(l => l.includes(q));
+    return mS && mL && mSv && mQ;
+  }).sort((a, b) => arrToNum(a.arr) - arrToNum(b.arr));
+
+  document.getElementById('count').textContent = filtered.length + ' dentists found';
+
+  const grid = document.getElementById('grid');
+  if (!filtered.length) {
+    grid.innerHTML = '<p class="empty">No dentists match your filters.</p>';
+    return;
+  }
+
+  grid.innerHTML = filtered.map(d => `
+    <div class="card">
+      <div class="card-top">
+        <div class="card-name">${d.name}</div>
+        <span class="arr-badge">${d.arr}</span>
+      </div>
+      <div class="card-address">${d.address}</div>
+      <div class="badges">
+        <span class="badge badge-${d.sector === '1' ? 'green' : 'orange'}">Secteur ${d.sector}</span>
+        ${d.carteVitale ? '<span class="badge badge-gray">Carte Vitale</span>' : ''}
+        ${d.languages.includes('english') ? '<span class="badge badge-blue">English</span>' : ''}
+        ${d.languages.includes('spanish') ? '<span class="badge badge-blue">Spanish</span>' : ''}
+        ${d.languages.includes('swedish') ? '<span class="badge badge-blue">Swedish</span>' : ''}
+                ${d.emergency ? '<span class="badge badge-red">Emergency</span>' : ''}
+      </div>
+      <div class="card-services">
+        ${d.services.map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' · ')}
+      </div>
+      ${d.note ? `<div class="card-note">${d.note}</div>` : ''}
+      <div class="card-footer">
+        ${d.phone ? `<span class="phone">${d.phone}</span>` : '<span></span>'}
+        <a href="${d.doctolib}" target="_blank" class="doctolib-btn">Book →</a>
+      </div>
+    </div>
+  `).join('');
+}
+
+document.addEventListener('DOMContentLoaded', render);
+</script>
+</body>
+</html>
